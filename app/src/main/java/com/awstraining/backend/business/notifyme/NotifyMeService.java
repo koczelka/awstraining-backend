@@ -1,5 +1,6 @@
 package com.awstraining.backend.business.notifyme;
 
+import com.awstraining.backend.business.notifyme.adapter.MessageSnsAWSSender;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -7,20 +8,24 @@ public class NotifyMeService {
 
     // TODO: lab1
     //  1. Inject MessageSender.
+    private MessageSender sender;
     // TODO lab2
     //  1. Inject Translator
     // TODO lab3
     //  1. Inject sentiment detector
 //    @Autowired
-    public NotifyMeService() {
-
+    public NotifyMeService(MessageSender sender) {
+        this.sender = sender;
     }
     
     public String notifyMe(NotifyMeDO notifyMe) {
-      
+      String textToBeSend =  notifyMe.text();
+
         // TODO: lab1
         //  1. Send text using sender.
+        sender.send(textToBeSend);
         //  2. Return sent message.
+
         // TODO: lab2
         //  1. Translate text from using translator.
         //  2. Change sending of text to "translated text" and return it.
