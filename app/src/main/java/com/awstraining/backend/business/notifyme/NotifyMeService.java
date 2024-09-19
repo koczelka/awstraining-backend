@@ -15,8 +15,9 @@ public class NotifyMeService {
     // TODO lab3
     //  1. Inject sentiment detector
 //    @Autowired
-    public NotifyMeService(MessageSender sender) {
+    public NotifyMeService(MessageSender sender, Translator translator) {
         this.sender = sender;
+        this.translator = translator;
     }
     
     public String notifyMe(NotifyMeDO notifyMe) {
