@@ -14,6 +14,7 @@ public class NotifyMeService {
     private Translator translator;
     // TODO lab3
     //  1. Inject sentiment detector
+    private  Sentiment sentiment;
 //    @Autowired
     public NotifyMeService(MessageSender sender, Translator translator) {
         this.sender = sender;
@@ -25,7 +26,6 @@ public class NotifyMeService {
         String translateTextToSend = translator.translate(notifyMe);
         // TODO: lab1
         //  1. Send text using sender.
-        sender.send(translateTextToSend);
         //  2. Return sent message.
 
         // TODO: lab2
@@ -34,6 +34,9 @@ public class NotifyMeService {
         // TODO: lab3
         //  1. Detect sentiment of translated message.
         //  2. Change sending of text to "setiment: translated text" and return it.
+       String sentimentString = sentiment.detectSentiment(notifyMe.targetLc(), translateTextToSend);
+        sender.send("Sentiment " + sentimentString + " text : " + translateTextToSend);
+
         return "This service is not available.";
     }
     
